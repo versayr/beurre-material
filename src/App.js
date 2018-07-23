@@ -1,14 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React          from 'react';
+import PropTypes      from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
+import Paper          from '@material-ui/core/Paper';
+import ListSubheader  from '@material-ui/core/ListSubheader';
+import List           from '@material-ui/core/List';
+import ListItem       from '@material-ui/core/ListItem';
+import ListItemIcon   from '@material-ui/core/ListItemIcon';
+import ListItemText   from '@material-ui/core/ListItemText';
+import Collapse       from '@material-ui/core/Collapse';
+import ExpandLess     from '@material-ui/icons/ExpandLess';
+import ExpandMore     from '@material-ui/icons/ExpandMore';
+import PastryCategory from './components/PastryCategory';
 
 const styles = theme => ({
   root: {
@@ -33,28 +35,17 @@ class NestedList extends React.Component {
 
     return (
       <div className={classes.root}>
-        <List
-          component="nav"
-          subheader={<ListSubheader component="div">Beurre-Material</ListSubheader>}
-        >
-          <ListItem button>
-            <ListItemText primary="Sent mail" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Drafts" />
-          </ListItem>
-          <ListItem button onClick={this.handleClick}>
-            <ListItemText primary="Inbox" />
-            {this.state.open ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItem button className={classes.nested}>
-                <ListItemText primary="Starred" />
-              </ListItem>
-            </List>
-          </Collapse>
-        </List>
+        <Paper>
+          <List
+            component="nav"
+            subheader={<ListSubheader component="div">Beurre-Material</ListSubheader>}
+          >
+            <PastryCategory />
+            <PastryCategory />
+            <PastryCategory />
+            <PastryCategory />
+          </List>
+        </Paper>
       </div>
     );
   }
