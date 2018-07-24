@@ -5,6 +5,8 @@ import ListItemText         from '@material-ui/core/ListItemText';
 import Collapse             from '@material-ui/core/Collapse';
 import ExpandLess           from '@material-ui/icons/ExpandLess';
 import ExpandMore           from '@material-ui/icons/ExpandMore';
+import InputLabel           from '@material-ui/core/InputLabel';
+import Select               from '@material-ui/core/Select';
 
 class PastryCategory extends Component {
   constructor(props) {
@@ -18,6 +20,10 @@ class PastryCategory extends Component {
     this.setState(state => ({ open: !state.open }));
   }
 
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.value });
+  };
+
   render() {
     return (
       <div>
@@ -28,7 +34,27 @@ class PastryCategory extends Component {
         <Collapse in={this.state.open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             <ListItem button>
-              <ListItemText primary="Chocolate Orange" />
+              <InputLabel htmlFor="age-native-simple">Plain Croissants</InputLabel>
+              <Select
+                native
+                value={this.state.age}
+                onChange={this.handleChange('age')}
+                inputProps={{
+                  name: 'age',
+                  id: 'age-native-simple',
+                }}
+              >
+                <option value="" />
+                <option value={0}>0</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
+                <option value={6}>6</option>
+                <option value={7}>7</option>
+                <option value={8}>8</option>
+              </Select>
             </ListItem>
             <ListItem button>
               <ListItemText primary="Blueberry Lemon" />
