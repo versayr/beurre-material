@@ -7,6 +7,8 @@ import ExpandLess           from '@material-ui/icons/ExpandLess';
 import ExpandMore           from '@material-ui/icons/ExpandMore';
 import InputLabel           from '@material-ui/core/InputLabel';
 import Select               from '@material-ui/core/Select';
+// import SelectorDropdown     from './SelectorDropdown';
+import FormControl          from '@material-ui/core/Select';
 
 class PastryCategory extends Component {
   constructor(props) {
@@ -20,10 +22,6 @@ class PastryCategory extends Component {
     this.setState(state => ({ open: !state.open }));
   }
 
-  handleChange = name => event => {
-    this.setState({ [name]: event.target.value });
-  };
-
   render() {
     return (
       <div>
@@ -32,40 +30,21 @@ class PastryCategory extends Component {
           {this.state.open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItem button>
-              <InputLabel htmlFor="age-native-simple">Plain Croissants</InputLabel>
-              <Select
-                native
-                value={this.state.age}
-                onChange={this.handleChange('age')}
-                inputProps={{
-                  name: 'age',
-                  id: 'age-native-simple',
-                }}
-              >
-                <option value="" />
-                <option value={0}>0</option>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-                <option value={5}>5</option>
-                <option value={6}>6</option>
-                <option value={7}>7</option>
-                <option value={8}>8</option>
-              </Select>
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Blueberry Lemon" />
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Rosemary Parmesan" />
-            </ListItem>
-            <ListItem button>
-              <ListItemText primary="Butterscotch" />
-            </ListItem>
-          </List>
+          <FormControl>
+            <InputLabel htmlFor="age-native-simple">Age</InputLabel>
+            <Select
+              native
+              inputProps={{
+                name: 'age',
+                id: 'age-native-simple',
+              }}
+            >
+              <option value="" />
+              <option value={10}>Ten</option>
+              <option value={20}>Twenty</option>
+              <option value={30}>Thirty</option>
+            </Select>
+          </FormControl>          
         </Collapse>
       </div>
     );
