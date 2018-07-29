@@ -33,6 +33,38 @@ class App extends React.Component {
         'Butterscotch Scone',
         'Rosemary Parmesan Scone'
       ]
+    }, {
+      name : 'Cookies',
+      items : [
+        'Chocolate Chunk Cookies',
+        'Oatmeal Raisin Cookies',
+        'Reese\'s Peanut Butter Cookies'
+      ]
+    }, {
+      name : 'Cupcakes',
+      items : [
+        'Simon Cupcakes',
+        'Milly Cupcakes',
+        'Madison Cupcakes',
+        'Harriet Cupcakes',
+        'Dexter Cupcakes',
+        'Red Velvet Cupcakes',
+        'Seasonal Cupcakes'
+      ]
+    }, {
+      name : 'Brownies & Blondies',
+      items : [
+        'Flourless Fudge Brownies',
+        'Sweet Potato Blondies'
+      ]
+    }, {
+      name : 'Other AM Pastries',
+      items : [
+        'Coffee Cake Slices',
+        'Pecan Sticky Buns',
+        'Buttery Buns of the Day',
+        'Buttery Biscuit'
+      ]
     }
   ] };
 
@@ -49,18 +81,12 @@ class App extends React.Component {
           </Typography>
         </AppBar>
         <List>
-          <PastryCategory 
-            categoryName={this.state.categories[0].name} 
-            categoryItems={this.state.categories[0].items}
-          />
-          <PastryCategory 
-            categoryName={this.state.categories[1].name} 
-            categoryItems={this.state.categories[1].items}
-          />
-          <PastryCategory 
-            categoryName={this.state.categories[2].name} 
-            categoryItems={this.state.categories[2].items}
-          />
+          {this.state.categories.map(function(category){
+            return <PastryCategory
+                categoryName={category.name}
+                categoryItems={category.items}
+              />
+          })}
         </List>
       </Paper>
     );
