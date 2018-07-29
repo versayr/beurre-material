@@ -29,7 +29,7 @@ class PastryCategory extends Component {
     return (
       <form>
         <ListItem button onClick={() => this.handleClick()}>
-          <ListItemText primary="Croissants" />
+          <ListItemText primary={this.props.categoryName} />
           {this.state.open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse 
@@ -43,7 +43,7 @@ class PastryCategory extends Component {
             <ListItem>
               <TextField
                 id="plain-croissants"
-                label="Plain Croissants"
+                label={this.props.categoryItems[0]}
                 type="number"
                 margin="dense"
                 fullWidth
@@ -52,7 +52,7 @@ class PastryCategory extends Component {
             <ListItem>
               <TextField
                 id="chocolate-croissants"
-                label="Chocolate Croissants"
+                label={this.props.categoryItems[1]}
                 type="number"
                 margin="dense"
                 fullWidth
@@ -61,7 +61,7 @@ class PastryCategory extends Component {
             <ListItem>
               <TextField
                 id="almond-croissants"
-                label="Almond Croissants"
+                label={this.props.categoryItems[2]}
                 type="number"
                 margin="dense"
                 fullWidth
@@ -70,7 +70,7 @@ class PastryCategory extends Component {
             <ListItem>
               <TextField
                 id="ham-croissants"
-                label="Ham & Gruyere Croissants"
+                label={this.props.categoryItems[3]}
                 type="number"
                 margin="dense"
                 fullWidth
