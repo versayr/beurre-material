@@ -40,42 +40,17 @@ class PastryCategory extends Component {
             component="div" 
             disablePadding 
           >
-            <ListItem>
+            {this.props.categoryItems.map(function(name){
+              return <ListItem>
               <TextField
-                id="plain-croissants"
-                label={this.props.categoryItems[0]}
+                id={name}
+                label={name}
                 type="number"
                 margin="dense"
                 fullWidth
               />
             </ListItem>
-            <ListItem>
-              <TextField
-                id="chocolate-croissants"
-                label={this.props.categoryItems[1]}
-                type="number"
-                margin="dense"
-                fullWidth
-              />
-            </ListItem>
-            <ListItem>
-              <TextField
-                id="almond-croissants"
-                label={this.props.categoryItems[2]}
-                type="number"
-                margin="dense"
-                fullWidth
-              />
-            </ListItem>
-            <ListItem>
-              <TextField
-                id="ham-croissants"
-                label={this.props.categoryItems[3]}
-                type="number"
-                margin="dense"
-                fullWidth
-              />
-            </ListItem>
+            })}
           </List>
         </Collapse>
       </form>
