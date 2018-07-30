@@ -4,78 +4,22 @@ import {
   AppBar,
   Typography,
   List
-} from '@material-ui/core';
-
+}                     from '@material-ui/core';
+import './App.css';
 import PastryCategory from './components/PastryCategory';
 
 class App extends React.Component {
-  state = { categories : [
-    { name : 'Croissants',
-      items : [ 
-        'Plain Croissants', 
-        'Chocolate Croissants', 
-        'Almond Croissants', 
-        'Ham Croissants' 
-      ]
-    }, {
-      name : 'Muffins',
-      items : [
-        'Blueberry Muffins',
-        'Morning Glory Muffins',
-        'Raspberry Orange Muffins',
-        'Banana Walnut Muffins'
-      ]
-    }, {
-      name : 'Scones',
-      items : [
-        'Blueberry Lemon Scone',
-        'Chocolate Orange Scone',
-        'Butterscotch Scone',
-        'Rosemary Parmesan Scone'
-      ]
-    }, {
-      name : 'Cookies',
-      items : [
-        'Chocolate Chunk Cookies',
-        'Oatmeal Raisin Cookies',
-        'Reese\'s Peanut Butter Cookies'
-      ]
-    }, {
-      name : 'Cupcakes',
-      items : [
-        'Simon Cupcakes',
-        'Milly Cupcakes',
-        'Madison Cupcakes',
-        'Harriet Cupcakes',
-        'Dexter Cupcakes',
-        'Red Velvet Cupcakes',
-        'Seasonal Cupcakes'
-      ]
-    }, {
-      name : 'Brownies & Blondies',
-      items : [
-        'Flourless Fudge Brownies',
-        'Sweet Potato Blondies'
-      ]
-    }, {
-      name : 'Other AM Pastries',
-      items : [
-        'Coffee Cake Slices',
-        'Pecan Sticky Buns',
-        'Buttery Buns of the Day',
-        'Buttery Biscuit'
-      ]
-    }
-  ] };
+  state = { categories : require('./data/PastryData.json') };
 
   render() {
     return (
       <Paper>
         <AppBar position="static">
           <Typography 
-            variant="display1" 
+            variant="display2" 
+            className="title"
             color="inherit" 
-            gutterBottom
+            align="center"
           >
             Beurre-Material
           </Typography>
