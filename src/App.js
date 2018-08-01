@@ -3,7 +3,8 @@ import {
   Paper,          
   AppBar,
   Typography,
-  List
+  List,
+  Button
 }                     from '@material-ui/core';
 import './App.css';
 import PastryCategory from './components/PastryCategory';
@@ -25,12 +26,21 @@ class App extends React.Component {
           </Typography>
         </AppBar>
         <List>
-          {this.state.categories.map(function(category){
-            return <PastryCategory
+          <form method="post" name="inventoryReport" action="form-to-email.php">
+            {this.state.categories.map(function(category){
+              return <PastryCategory
                 categoryName={category.name}
                 categoryItems={category.items}
               />
-          })}
+            })}
+            <Button 
+              type="submit" 
+              variant="contained"
+              color="secondary"
+            >
+              Submit
+            </Button>
+          </form>
         </List>
       </Paper>
     );

@@ -1,4 +1,5 @@
 import React, { Component }       from 'react';
+import PropTypes from 'prop-types';
 import { 
   List,                       
   ListItem,                   
@@ -54,5 +55,11 @@ class PastryCategory extends Component {
     );
   }
 }
+
+PastryCategory.propTypes = {
+  categoryName: PropTypes.string,
+  categoryItems: PropTypes.array
+};
+
 
 export default PastryCategory;
