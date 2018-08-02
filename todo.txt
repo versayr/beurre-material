@@ -1,0 +1,5 @@
+Sidebar/Navigation
+Green/Validation thingy for completed sections
+ESlist/React props validation errors
+proper JSON file format
+submit form as an email

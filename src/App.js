@@ -33,13 +33,15 @@ class App extends React.Component {
                 categoryItems={category.items}
               />
             })}
-            <Button 
-              type="submit" 
-              variant="contained"
-              color="secondary"
-            >
-              Submit
-            </Button>
+            <div className="Button-Surround">
+              <Button 
+                type="submit" 
+                variant="contained"
+                color="secondary"
+              >
+                Submit
+              </Button>
+            </div>
           </form>
         </List>
       </Paper>

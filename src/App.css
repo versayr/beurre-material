@@ -7,3 +7,8 @@
 .title {
   padding: 10px;
 }
+
+.Button-Surround {
+  display: flex;
+  justify-content: center;
+}
