@@ -24,7 +24,7 @@ class PastryCategory extends Component {
 
   render() {
     return (
-      <form>
+      <div>
         <ListItem button onClick={() => this.handleClick()}>
           <ListItemText primary={this.props.categoryName} />
           {this.state.open ? <ExpandLess /> : <ExpandMore />}
@@ -40,10 +40,9 @@ class PastryCategory extends Component {
               return (
                 <ListItem key={name}>
                   <TextField
-                    inputProps={{ min: '0' }} 
+                    inputProps={{ min: '0', type: 'number' }} 
                     id={name}
                     label={name}
-                    type="number"
                     margin="dense"
                     fullWidth
                   />
@@ -52,7 +51,7 @@ class PastryCategory extends Component {
             })}
           </List>
         </Collapse>
-      </form>
+      </div>
     );
   }
 }

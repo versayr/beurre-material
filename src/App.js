@@ -10,7 +10,15 @@ import './App.css';
 import PastryCategory from './components/PastryCategory';
 
 class App extends React.Component {
-  state = { categories : require('./data/PastryData.json') };
+  constructor(props) {
+    super(props);
+    this.state = { categories : require('./data/PastryData.json') };
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+  }
+
+  handleFormSubmit(event) {
+    event.preventDefault();
+  }
 
   render() {
     return (
@@ -26,14 +34,15 @@ class App extends React.Component {
           </Typography>
         </AppBar>
         <List>
-          <form method="post" name="inventoryReport" action="form-to-email.php">
+          <form name="inventoryReport" onSubmit={this.handleFormSubmit}>
             {this.state.categories.map(function(category){
               return <PastryCategory
+                key={category.name}
                 categoryName={category.name}
                 categoryItems={category.items}
-              />
+              />;
             })}
-            <div className="Button-Surround">
+            <div className="button-surround">
               <Button 
                 type="submit" 
                 variant="contained"
@@ -44,6 +53,16 @@ class App extends React.Component {
             </div>
           </form>
         </List>
+        <div className="results">
+          <Typography 
+            color="inherit" 
+            align="center" 
+            variant="display1"
+          >
+            Form Results
+          </Typography>
+          <pre className="results-wrapper"><code className="results-display"></code></pre>
+        </div>
       </Paper>
     );
   }
