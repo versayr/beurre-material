@@ -1,9 +1,11 @@
 import React          from 'react';
 import { 
   Paper,          
+  LinearProgress,
   AppBar,
   Typography,
   List,
+  TextField,
   Button
 }                     from '@material-ui/core';
 import './App.css';
@@ -12,17 +14,16 @@ import PastryCategory from './components/PastryCategory';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { categories : [] };
+    this.state = { isLoaded: false, categories : [] };
   }
 
   componentDidMount() {
     fetch('/pastries')
       .then(res => res.json())
-      .then(categories => this.setState({ categories }));
-  }
-
-  handleFormSubmit(event) {
-    event.preventDefault();
+      .then(categories => this.setState({ 
+        isLoaded: true,
+        categories: categories 
+      }));
   }
 
   render() {
@@ -38,8 +39,13 @@ class App extends React.Component {
             Beurre-Material
           </Typography>
         </AppBar>
+        {!this.state.isLoaded && <LinearProgress align="center" />}
         <List>
-          <form name="inventoryReport" onSubmit={this.handleFormSubmit.bind(this)}>
+          <form 
+            method="post" 
+            name="inventoryReport" 
+            action="send"
+          >
             {this.state.categories.map(function(category){
               return <PastryCategory
                 key={category.name}
@@ -47,6 +53,13 @@ class App extends React.Component {
                 categoryItems={category.items}
               />;
             })}
+            <TextField
+              label="Need anything else?"
+              multiline
+              fullWidth
+              margin="dense"
+              rowsMax="4"
+            />
             <div className="button-surround">
               <Button 
                 type="submit" 
