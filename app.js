@@ -10,6 +10,8 @@ var indexRouter    = require('./routes/index');
 var usersRouter    = require('./routes/users');
 var pastriesRouter = require('./routes/pastries');
 
+var mailAccount = require('./secret');
+
 var app = express();
 
 // view engine setup
@@ -47,8 +49,6 @@ app.use(function(err, req, res, next) {
 });
 
 app.post('/send', (req, res) => {
-  const message = pastriesRouter.map(function(category){
-  });
   const output = `
   <h3>Clarendon Pastry Report</h3>
   <ul>
@@ -67,8 +67,8 @@ app.post('/send', (req, res) => {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: 'beurreClarendon@gmail.com', 
-      pass: '+++628^divided^special^someone^indicate^743+++'
+      user: mailAccount.user, 
+      pass: mailAccount.pass
     }
   });
 

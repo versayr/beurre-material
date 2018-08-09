@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
+/* GET pastry listing. */
 router.get('/', function(req, res, next) {
   res.json( [
     { 'name' : 'Croissants',
