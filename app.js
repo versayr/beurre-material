@@ -10,7 +10,7 @@ var indexRouter    = require('./routes/index');
 var usersRouter    = require('./routes/users');
 var pastriesRouter = require('./routes/pastries');
 
-var mailAccount = require('./secret');
+var mailAccount = require('./data/secret');
 
 var app = express();
 
@@ -31,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/pastries', pastriesRouter);
+app.use('/send', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -52,12 +53,8 @@ app.post('/send', (req, res) => {
   const output = `
   <h3>Clarendon Pastry Report</h3>
   <ul>
-  <li>Name: ${req.body.name}</li>
-  <li>Company: ${req.body.company}</li>
-  <li>Email: ${req.body.email}</li>
-  <li>Phone: ${req.body.phone}</li>
   </ul>
-  <h3>Message</h3>
+  <h3>Other Requests:</h3>
   <p>${req.body.message}</p>
   `;
 
@@ -89,7 +86,7 @@ app.post('/send', (req, res) => {
     console.log('Message sent: %s', info.messageId);
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
-    res.render('contact', {msg:'Email has been sent'});
+    res.redirect('http://www.google.com');
   });
 });
 

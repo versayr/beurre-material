@@ -10,7 +10,7 @@
 /build
 
 # secrets
-secret.js
+/data/secret.js
 
 # misc
 .DS_Store

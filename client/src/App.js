@@ -55,6 +55,7 @@ class App extends React.Component {
             })}
             <TextField
               label="Need anything else?"
+              inputProps={{ name: 'message' }}
               multiline
               fullWidth
               margin="dense"
