@@ -14,7 +14,13 @@ import PastryCategory from './components/PastryCategory';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isLoaded: false, categories : [] };
+    this.state = { 
+      isLoaded: false, 
+      categories : [],
+      formFields: {
+        message: ""
+      }
+    };
   }
 
   componentDidMount() {
@@ -24,6 +30,17 @@ class App extends React.Component {
         isLoaded: true,
         categories: categories 
       }));
+  }
+
+  formHandler(formFields) {
+    console.log(formFields);
+    fetch('/send', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
   render() {
@@ -42,9 +59,8 @@ class App extends React.Component {
         {!this.state.isLoaded && <LinearProgress align="center" />}
         <List>
           <form 
-            method="post" 
+            onSubmit={this.formHandler(this.state.formFields)}
             name="inventoryReport" 
-            action="send"
           >
             {this.state.categories.map(function(category){
               return <PastryCategory
@@ -55,7 +71,8 @@ class App extends React.Component {
             })}
             <TextField
               label="Need anything else?"
-              inputProps={{ name: 'message' }}
+              value={this.state.formFields.message}
+              onChange={event => this.setState({ formFields: {message: event.target.value}})}
               multiline
               fullWidth
               margin="dense"
