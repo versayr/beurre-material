@@ -59,7 +59,7 @@ class App extends React.Component {
         {!this.state.isLoaded && <LinearProgress align="center" />}
         <List>
           <form 
-            onSubmit={this.formHandler(this.state.formFields)}
+            onSubmit={ () => {this.formHandler(this.state.formFields)}}
             name="inventoryReport" 
           >
             {this.state.categories.map(function(category){
