@@ -34,13 +34,10 @@ class App extends React.Component {
 
   formHandler(formFields) {
     console.log(formFields);
-    fetch('/send', {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
+    const body = new FormData(this.form);
+    fetch('/send', { method: 'post', body })
+      .then(res => res.json())
+      .then(data => alert(JSON.stringify(data, null, '\t')));
   }
 
   render() {

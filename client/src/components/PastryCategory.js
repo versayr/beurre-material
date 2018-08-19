@@ -40,7 +40,11 @@ class PastryCategory extends Component {
               return (
                 <ListItem key={name}>
                   <TextField
-                    inputProps={{ min: '0', type: 'number' }} 
+                    inputProps={{ 
+                      min: '0', 
+                      type: 'number',
+                      name: name.toString()
+                    }} 
                     id={name}
                     label={name}
                     margin="dense"
