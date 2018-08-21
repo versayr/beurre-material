@@ -1,5 +1,6 @@
 import React, { Component }       from 'react';
 import PropTypes                  from 'prop-types';
+import { ExpandLess, ExpandMore } from '@material-ui/icons';
 import { 
   List,                       
   ListItem,                   
@@ -7,46 +8,45 @@ import {
   Collapse,                   
   TextField 
 }                                 from '@material-ui/core';
-import { ExpandLess, ExpandMore } from '@material-ui/icons';
 
 class PastryCategory extends Component {
   constructor(props) {
     super(props);
     this.state = {
       open: false,
-      plain: 0
     };
   }
 
-  handleClick() {
+  expandToggle() {
     this.setState(state => ({ open: !state.open }));
   }
 
   render() {
+    let name = this.props.category.name;
+    let items = this.props.category.items;
+
     return (
       <div>
-        <ListItem button onClick={() => this.handleClick()}>
-          <ListItemText primary={this.props.categoryName} />
+        <ListItem button onClick={() => this.expandToggle()}>
+          <ListItemText primary={name} />
           {this.state.open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
-        <Collapse 
-          in={this.state.open} 
-        >
+        <Collapse in={this.state.open} >
           <List 
             component="div" 
             disablePadding 
           >
-            {this.props.categoryItems.map(function(name){
+            {items.map(function(item){
               return (
-                <ListItem key={name}>
+                <ListItem key={item}>
                   <TextField
                     inputProps={{ 
                       min: '0', 
                       type: 'number',
-                      name: name.toString()
+                      name: item.toString(),
                     }} 
-                    id={name}
-                    label={name}
+                    id={item}
+                    label={item}
                     margin="dense"
                     fullWidth
                   />
@@ -61,8 +61,10 @@ class PastryCategory extends Component {
 }
 
 PastryCategory.propTypes = {
-  categoryName: PropTypes.string,
-  categoryItems: PropTypes.array
+  category: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    items: PropTypes.array.isRequired
+  })
 };
 
 

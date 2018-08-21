@@ -18,7 +18,7 @@ class App extends React.Component {
       isLoaded: false, 
       categories : [],
       formFields: {
-        message: ""
+        message: ''
       }
     };
   }
@@ -29,15 +29,24 @@ class App extends React.Component {
       .then(categories => this.setState({ 
         isLoaded: true,
         categories: categories 
+      }))
+      .then(this.state.categories.map( (category) => {
+        category.items.map( (item) => {
+          let formFields = Object.assign({ item: 0 }, this.state.formFields);
+          this.setState({formFields: formFields})
+        })
       }));
   }
 
-  formHandler(formFields) {
-    console.log(formFields);
-    const body = new FormData(this.form);
-    fetch('/send', { method: 'post', body })
-      .then(res => res.json())
-      .then(data => alert(JSON.stringify(data, null, '\t')));
+  setFormValue = (value) => {
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    //    const body = new FormData(this.form);
+    //    fetch('/send', { method: 'post', body })
+    //      .then(res => res.json())
+    //      .then(data => alert(JSON.stringify(data, null, '\t')));
   }
 
   render() {
@@ -56,14 +65,13 @@ class App extends React.Component {
         {!this.state.isLoaded && <LinearProgress align="center" />}
         <List>
           <form 
-            onSubmit={ () => {this.formHandler(this.state.formFields)}}
+            onSubmit={this.handleSubmit}
             name="inventoryReport" 
           >
             {this.state.categories.map(function(category){
               return <PastryCategory
                 key={category.name}
-                categoryName={category.name}
-                categoryItems={category.items}
+                category={category}
               />;
             })}
             <TextField
