@@ -30,15 +30,12 @@ class App extends React.Component {
         isLoaded: true,
         categories: categories 
       }))
-      .then(this.state.categories.map( (category) => {
-        category.items.map( (item) => {
-          let formFields = Object.assign({ item: 0 }, this.state.formFields);
-          this.setState({formFields: formFields})
-        })
+      .then(this.state.categories.forEach((category) => {
+        category.items.forEach((item) => {
+          this.setState({ [item]: 0 });
+          console.log(item);
+        });
       }));
-  }
-
-  setFormValue = (value) => {
   }
 
   handleSubmit(event) {
