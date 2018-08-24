@@ -30,12 +30,15 @@ class App extends React.Component {
         isLoaded: true,
         categories: categories 
       }))
-      .then(this.state.categories.forEach((category) => {
-        category.items.forEach((item) => {
-          this.setState({ [item]: 0 });
-          console.log(item);
+      .then(() => { 
+        this.state.categories.forEach((category) => {
+          category.items.forEach((item) => {
+            var newFormField = this.state.formFields;
+            newFormField[item] = 0;
+            this.setState({ formFields: newFormField });
+          });
         });
-      }));
+      });
   }
 
   handleSubmit(event) {
